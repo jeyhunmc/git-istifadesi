@@ -1,0 +1,156 @@
+Terminal
+
+pwd -- hansi folderde oldugumuzu gosterir
+ls  -- icinde oldugumuz folderin icerisi gosterir
+ls -a -- gizle folderleri gosterir
+cd  -- folderler arasinda gedirik
+mkdir folder_name  --folder yaradir oldugun yerde
+touch doysa.txt   -- fayl tipini ver fayl yaratsin
+
+vi dosya.java    -- fayli acib icine yazi elave etmek (acilan yerde ilk once "i" ye basib sonra yazini yaziriq sonra 
+"esc" basiriq - ":wq" yaziriq "enter" vururuq )
+
+
+proqram_adi fayl_adi -- hemin fayli hemin proqram ile acir (example: notepad dosya)
+
+rm dosya.txt --fayli silir
+
+rm -r  folder_name --folderi slir
+
+---------------------------------------------------------------------------
+//git config melumatlari
+git config --list                        --- git user melumatlari.
+git config --global user.name            --- user name gosterirgit config --global user.name.
+git config --global user.name "jeyhun"   --- user name deyisdirir.
+---------------------------------------------------------------------------
+///Repository yaratmaq 
+git init 
+
+///Staging area
+git status                     -- branchlari ve commit olub olmadigini gosterir
+git add fayl_adi               -- hemin fayli gite add edir commit etmek ucun saxlayir
+git rm --cached fayl_adi.txt   -- hemin fayli geri qaytarir untracked edir
+git add .                      -- butun fayllari  add edir commit etmek ucun saxlayir
+
+//Commit
+git commit -m "First Commit"   -- staging area daki fayllari ve deyisikliklerini commit edir
+git log                        -- commitleri gosterir.
+git log --oneline              -- commitleri 1 setrde gosterir.
+
+//Commit geri almaq (id)
+git reset dc4c191 --hard       ---hemin commitdeki veziyyete geri qaytarir ondan sonraki deyisiklikleri saxlamir.
+git reset 19a3ccd --soft       ---hemin commite geri qayidir ve ondan sonraki deyisiklikleri staging areada saxlayir.
+
+git revert 1aa33d0             ---hemin id deki commiti saxlayir amma deyisikliyi geri qaytarir.
+
+//commit deyisdirilmesi
+
+git commit --amend -m "style css edit olund"   ---commit mesajinin deyisdirilmesi axirincini
+
+git add . --deyisikliyi add ele
+git commit --amend    sonra adini cmd edit ele esc bas :wq yaz neter bas
+
+
+///Branch   ---ayri ayri branchlar yaradilir ve axirda master brancina birlesdirilir.
+
+git branch name    --- branch yaradir
+git branch -a      --  siyahini gosterir
+git checkout name  --  branch i deyisir
+  
+--Branch lari deyisdirdikde hemin branchdaki son veziyyete qayidir proyektimiz
+
+git checkout -b feature-1  --branch yaradir ve hemin brancha kecir
+git branch -d dal-1        --branch silmek (silmese D yaz)
+
+///Branch merge 
+git merge feature-2     ---feature-2 brancini masterle birlesdirir hemde commitleri birlesdirir.
+
+///Githuba elave etmek 
+git push https://github.com/jeyhunmc/git-egitimi.git master  --githubda yaratdigimiz repoya add edecek
+
+///Repo linkini add elemek sonra push etmek 
+git remote add origin https://github.com/jeyhunmc/git-egitimi.git
+git remote -v                --- linklerin siyahisi
+git push origin master       --- fayllari githuba push edir 
+
+///Repo yuklemek 
+git clone https://github.com/jeyhunmc/git-egitimi-2.git
+
+///Pull request
+masterden basqa branchla commit and push etdikden sonra githubda "compare and pull request" hissesinde "create pull request"
+ clickleyirsen ve "merge pull request" isteyi yaradir.
+"merge pull request" etdikde ise branch imdaki deyisiklik mastere oturacaq.
+
+///Fork
+Basqa birinin proyektine kenardan nece daxil olmaq olar.Basqa userin github daki proyektine daxil olub "fork" hissesine click vur 
+ve proyekt senin githubuna elave olunacaq.
+
+git clone github_link ---desktopda yaranacaq
+
+Deyisiklikleri et commit sonra push ele.Sonra onu fork elediyimiz real proyekte gondermek ucun "new pull request" vur.
+Sonra hemin adam pull requests hissesinde istese onu merge pull request ede biler.
+Review changes hissesine vurduqda ise review ucun geri gonderir.
+
+//Git Fetch and Pull
+Fetch -- githubdaki deyisikliyi getirib branch da saxlayir
+Pull -- deyisiklikleri bir basa cekir
+//Fetch
+git fetch origin  --- githubdan endirdi deyisiklikleri
+gir branch -a     --getirilen deyisikliklere baxmaq
+git merge origin/master -- deyisiklikleri birlesdirir
+//Pull
+git pull origin master  --Birbasa getirib birlesdirir.
+
+
+//Git Ignore gite vurmagi istemediyin fayllari  bura yaziriq
+
+touch .gitignore   --fayli yaradiriq
+gitigonre icerisinde test.php ignore etdik
+folder ucun foldername/  kimi yaziriq
+
+hh folderinde icinde yalniz 1 fayli ise bele olur
+
+hh/*
+!hh/test.txt
+
+git status hh/   ---bu sekilde ise folderde hansilari ignor etmesin onu goruruk.
+
+///Git ReadMe  --Proyekt ucun melumat verir
+
+README.MD fayli yaradiriq
+
+Icini nece doldurmaq lazim olduguna git help linkinde tapa bilersen
+
+///Git Stash  Deyisiklikleri qiraqda saxlayib basqa deyisiklik etmek ucundur
+ meselen her hansisa bir a faylim uzerinde islediyim vaxt b faylinda deyisiklik edib gite push etmek lazimdir.
+a faylin stash atiriq.
+
+git stash save "a.js edit"        ---  stasha atdiq ve deyisiklikler evvelki veziyyetine qayitdi biz push etdikden sonra evvelki
+veziyyetine qaytaraciq.
+
+
+git stash list --- var olan stash larin siyahisi
+git stash show -p   --- en sonuncu deyisikliyi gosterir
+git stash show -p 0   --- hansi id-ni yazsaq o deyisikliyi gosterir (islemedi)
+
+
+git stash drop    --- son stashi siler
+git stash drop 1   --- id si 1 olan stashi siler
+
+git stash pop 0   ---- 0 id li stash i geri getirir.
+
+
+
+//GIT ALIAS  - git emrleri qisaltmaq ucundur. config faylina alias adli emrler yazmaq ucundur
+
+git config --global alias.st status    --- status sozunu st ile de cagirmaq olacaq
+git st    ----- git st git status ile evez olundu
+
+git config --global alias.co 'commit -m'     ---- commiti co ile evez etdik
+git co "commit"      ----- commit etmek ucun 
+
+
+///GIT DIFF
+
+ git checkout -- yazi.txt   --- fayldaki deyisiklikler geriye gedir
+ git diff                   --- fayllardaki deyisiklikleri gosterir
